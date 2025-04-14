@@ -4,7 +4,7 @@ import edu.iu.habahram.DinerPancakeHouseMerge.model.DinerMenu;
 import edu.iu.habahram.DinerPancakeHouseMerge.model.MenuItem;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Collection;
 
 @Repository
 public class DinerRepository {
