@@ -1,9 +1,7 @@
 name: Docker Image CI for GHCR
 
 on:
-  push:
-    branches:
-      - main
+  push
 
 permissions:
   contents: read
@@ -16,7 +14,7 @@ jobs:
   build_and_publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v2
 
       - name: Set up JDK 17
@@ -31,7 +29,7 @@ jobs:
       - name: Run the unit tests
         run: mvn --batch-mode -Dmaven.test.failure.ignore=true test
 
-      - name: Report test results
+      - name: Report
         uses: dorny/test-reporter@v1
         if: always()
         with:
@@ -41,17 +39,10 @@ jobs:
           fail-on-error: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: List target directory
-        run: ls -l target
-
       - name: Log in to GHCR
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Build and push the Docker image
+      - name: Build and push the image
         run: |
-          IMAGE_ID=ghcr.io/${{ github.actor }}/pancake-house
-          VERSION=$(echo $GITHUB_SHA | cut -c1-7)
-          
-          docker build -t $IMAGE_ID:latest -t $IMAGE_ID:$VERSION --file Dockerfile .
-          docker push $IMAGE_ID:latest
-          docker push $IMAGE_ID:$VERSION
+          docker build -t ghcr.io/b532-savash/pancake-house:latest --file Dockerfile .  
+          docker push ghcr.io/b532-savash/pancake-house:latest
