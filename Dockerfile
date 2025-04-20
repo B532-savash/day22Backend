@@ -1,7 +1,7 @@
 FROM eclipse-temurin:17 AS builder
 WORKDIR /home
 COPY . .
-RUN ./mvnw clean package
+RUN chmod +x mvnw && ./mvnw clean package -DskipTests
 
 FROM eclipse-temurin:17
 WORKDIR /home
