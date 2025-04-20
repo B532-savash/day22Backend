@@ -29,9 +29,4 @@ public class CafeMenu extends Menu {
     public MenuItem[] getItems() {
         return menuItems.values().toArray(new MenuItem[0]);
     }
-
-
-    public Iterator<MenuItem> createIterator() {
-        return menuItems.values().iterator();
-    }
 }
