@@ -5,5 +5,5 @@ RUN ./mvnw clean package
 
 FROM eclipse-temurin:17
 WORKDIR /home
-COPY --from=builder /home/target/pancake-house-0.0.1-SNAPSHOT.jar coffee-order.jar
+COPY --from=builder /home/target/pancake-house-0.0.1-SNAPSHOT.jar pancake-house.jar
 ENTRYPOINT ["java", "-jar", "pancake-house.jar"]
