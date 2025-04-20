@@ -44,5 +44,5 @@ jobs:
 
       - name: Build and push the image
         run: |
-          docker build -t ghcr.io/b532-savash/pancakeHouse:latest --file Dockerfile .  
-          docker push ghcr.io/b532-savash/pancakeHouse:latest
+          docker build -t ghcr.io/b532-savash/pancake-house:latest --file Dockerfile .  
+          docker push ghcr.io/b532-savash/pancake-house:latest
