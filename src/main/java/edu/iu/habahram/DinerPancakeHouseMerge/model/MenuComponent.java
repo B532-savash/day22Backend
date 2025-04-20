@@ -26,7 +26,7 @@ public abstract class MenuComponent {
         throw new UnsupportedOperationException();
     }
 
-    public Collection<? extends MenuItem> getItems() {
+    public MenuItem[] getItems() {
         throw new UnsupportedOperationException();
     }
 }

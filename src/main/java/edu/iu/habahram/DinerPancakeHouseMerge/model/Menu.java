@@ -1,6 +1,7 @@
 package edu.iu.habahram.DinerPancakeHouseMerge.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 public class Menu extends MenuComponent{
@@ -34,10 +35,9 @@ public class Menu extends MenuComponent{
     }
 
     public MenuItem[] getItems() {
-        //TODO
         ArrayList<MenuItem> result = new ArrayList<>();
         for(MenuComponent menuComponent: menuComponents) {
-            result.addAll(menuComponent.getItems());
+            result.addAll(Arrays.asList(menuComponent.getItems()));
         }
 
         return result.toArray(new MenuItem[0]);

@@ -15,11 +15,10 @@ public class MergerRepository {
         allMenus.add(new PancakeHouseMenu("PANCAKE HOUSE MENU", "Breakfast"));
         allMenus.add(new CafeMenu("CAFE MENU", "Dinner"));
         MenuItem[] menuItems = allMenus.getItems();
-        List<MenuItemRecord> records = Arrays.stream(menuItems)
+        return Arrays.stream(menuItems)
                 .map(x -> new MenuItemRecord(x.getName(),
                         x.getDescription(),
                         x.isVegetarian(),
                         x.getPrice())).toList();
-        return records;
     }
 }
