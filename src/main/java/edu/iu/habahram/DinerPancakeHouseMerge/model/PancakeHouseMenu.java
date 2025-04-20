@@ -1,9 +1,6 @@
 package edu.iu.habahram.DinerPancakeHouseMerge.model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class PancakeHouseMenu extends Menu{
     List<MenuItem> menuItems;
@@ -38,6 +35,7 @@ public class PancakeHouseMenu extends Menu{
     {
         MenuItem menuItem = new MenuItem(name, description, vegetarian, price);
         menuItems.add(menuItem);
+        add(menuItem);
     }
 
     public List<MenuItem> getMenuItems() {
@@ -45,9 +43,6 @@ public class PancakeHouseMenu extends Menu{
     }
 
 
-    public Iterator<MenuItem> createIterator() {
-        return menuItems.iterator();
-    }
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         for(MenuItem item: getMenuItems()) {
@@ -56,5 +51,26 @@ public class PancakeHouseMenu extends Menu{
         return  stringBuilder.toString();
     }
 
-    // other menu methods here
+    @Override
+    public Iterator<MenuComponent> createIterator() {
+        return new Iterator<MenuComponent>() {
+            private int position = 0;
+
+            @Override
+            public boolean hasNext() {
+                while (position < menuItems.size() && menuItems.get(position) == null) {
+                    position++;
+                }
+                return position < menuItems.size();
+            }
+
+            @Override
+            public MenuComponent next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                return menuItems.get(position++);
+            }
+        };
+    }
 }

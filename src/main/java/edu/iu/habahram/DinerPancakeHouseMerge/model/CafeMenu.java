@@ -29,4 +29,21 @@ public class CafeMenu extends Menu {
     public MenuItem[] getItems() {
         return menuItems.values().toArray(new MenuItem[0]);
     }
+
+    @Override
+    public Iterator<MenuComponent> createIterator() {
+        return new Iterator<MenuComponent>() {
+            final Iterator<MenuItem> itemIterator = menuItems.values().iterator();
+
+            @Override
+            public boolean hasNext() {
+                return itemIterator.hasNext();
+            }
+
+            @Override
+            public MenuComponent next() {
+                return itemIterator.next();
+            }
+        };
+    }
 }

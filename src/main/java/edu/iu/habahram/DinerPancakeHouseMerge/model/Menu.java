@@ -3,6 +3,7 @@ package edu.iu.habahram.DinerPancakeHouseMerge.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
 
 public class Menu extends MenuComponent{
     ArrayList<MenuComponent> menuComponents = new ArrayList<MenuComponent>();
@@ -41,5 +42,10 @@ public class Menu extends MenuComponent{
         }
 
         return result.toArray(new MenuItem[0]);
+    }
+
+    @Override
+    public Iterator<MenuComponent> createIterator() {
+        return new PancakeHouseIterator(menuComponents.iterator());
     }
 }
